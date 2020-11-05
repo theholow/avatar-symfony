@@ -1,0 +1,19 @@
+#avatar-container {
+    width: 250px;
+    height: 250px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.features{
+    margin: 200px 0;
+}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/app.js') }}" type="module" async defer></script>{% endblock %}
+{% block body %}
+    <main>
+        <section id="avatar-container">
+            {{ svg|raw }}
+        </section>
+        <div class="features">
+            <form id="generate-avatar-form" action="{{ path('avatar.index') }}" method="post">
+                <div>
+                    <label for="size-input">Taille</label>
+                    <input id="size-input" type="range" min="3" max="7" step="1" name="size"
+                           value="{{ app.request.request.get('size') }}">
+                    <output id="size-output"></output>
+                </div>
+
+                <div>
+                    <label for="colors-input">Couleurs</label>
+                    <input id="colors-input" type="range" min="2" max="5" step="1" name="colors"
+                           value="{{ app.request.request.get('colors') }}">
+                    <output id="colors-output"></output>
+                </div>
+                <input type="submit" value="Générer">
+            </form>
+
+            <form id="save-avatar-form" action="{{ path('avatar.save') }}" method="post">
+                <input type="hidden" name="svg" value="{{ svg }}">
+                <input type="hidden" name="action" value="save">
+                <input type="submit" value="Enregistrer">
+            </form>
+        </div>
+    </main>
+{% endblock %}
